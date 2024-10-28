@@ -13,7 +13,10 @@ pipeline {
           MY_ENV_VAR = 'yomama'
      }
      stages { 
-          stage("Compile") { 
+          stage("Compile") {
+               when {
+                    branch 'main'
+               }
                steps { 
                     sh "/bin/bash compile.sh" 
                } 
