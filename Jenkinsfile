@@ -12,4 +12,15 @@ pipeline {
                } 
           } 
      } 
+     post {
+          failure {
+               echo "POST // FAILURE catch up task reached"
+          }
+          success {
+               echo "POST // SUCCESS task reached, winding down now"
+          }
+          always {
+               echo "POST // ALWAYS cleanup task reached"
+          }
+     }
 } 
