@@ -1,5 +1,8 @@
 pipeline { 
-     agent any 
+     agent any
+     environment { 
+         MY_ENV_VAR = 'yomama'
+     }
      stages { 
           stage("Compile") { 
                steps { 
