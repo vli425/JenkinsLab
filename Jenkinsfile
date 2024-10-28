@@ -16,7 +16,6 @@ pipeline {
           stage("Compile") {
                when {
                     branch 'main'
-                    buildingTag()
                }
                steps { 
                     sh "/bin/bash compile.sh" 
@@ -25,7 +24,6 @@ pipeline {
           stage("Unit test") {
                when {
                     branch 'main'
-                    buildingTag()
                }
                steps { 
                     sh "/bin/bash test.sh" 
