@@ -1,12 +1,12 @@
 pipeline { 
      agent any
      triggers {
-        pollSCM('H/10 * * * *')
+        pollSCM('H/5 * * * *')
      }
      options {
           disableConcurrentBuilds()
           retry(3)
-          timeout(time: 10, unit: 'MINUTES')
+          timeout(time: 4, unit: 'MINUTES')
           timestamps()
      } 
      environment { 
@@ -16,12 +16,17 @@ pipeline {
           stage("Compile") {
                when {
                     branch 'main'
+                    buildingTag()
                }
                steps { 
                     sh "/bin/bash compile.sh" 
                } 
           } 
-          stage("Unit test") { 
+          stage("Unit test") {
+               when {
+                    branch 'main'
+                    buildingTag()
+               }
                steps { 
                     sh "/bin/bash test.sh" 
                } 
