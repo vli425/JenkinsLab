@@ -3,12 +3,12 @@ pipeline {
      stages { 
           stage("Compile") { 
                steps { 
-                    sh "./compile.sh" 
+                    sh "/bin/bash compile.sh" 
                } 
           } 
           stage("Unit test") { 
                steps { 
-                    sh "./test.sh" 
+                    sh "/bin/bash test.sh" 
                } 
           } 
      } 
