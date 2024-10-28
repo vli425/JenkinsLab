@@ -1,7 +1,16 @@
 pipeline { 
      agent any
+     triggers {
+        pollSCM('H/10 * * * *')
+     }
+     options {
+          disableConcurrentBuilds()
+          retry(3)
+          timeout(time: 10, unit: 'MINUTES')
+          timestamps()
+     } 
      environment { 
-         MY_ENV_VAR = 'yomama'
+          MY_ENV_VAR = 'yomama'
      }
      stages { 
           stage("Compile") { 
